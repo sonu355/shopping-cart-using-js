@@ -1,4 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Metal+Mania&family=Raleway:ital,wght@0,100;1,300&display=swap');
+@font-face{
+    font-family: "Booter - Zero Zero";
+    src: url("./font/Booter - Zero Zero.woff") format("woff"),
+        url("/font/Booter - Zero Zero.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
 
 *{
     box-sizing: border-box;
@@ -53,4 +61,52 @@ html, body{
     text-align: center;
     margin: 0;
     font-size: 4em;
+    font-family: "Booter - Zero Zero";
+    font-weight: normal;
+    color: white;
+}
+.band-name-large{
+    font-size: 7em;
+}
+.content-section{
+    margin: 1em;
+}
+.container{
+    max-width: 900;
+    margin: 0 auto;
+    padding: 0 1.5em;
+}
+.section-header{
+    font-family: "Metal Mania";
+    font-weight: normal;
+    color: #333;
+    text-align: center;
+    font-size: 2.5em;
+}
+.about-band-image{
+    float: left;
+    height: 200px;
+    width: 200px;
+    margin: 15px;
+    border-radius: 50%;
+}
+.main-footer{
+    background-color: #56CCF2;
+    color: white;
+    padding: 0.25em 0;
+}
+.main-footer-container{
+    display: flex;
+    align-items: center;
+}
+.main-footer-container ul{
+    flex-grow: 1;
+    text-align: end;
+}
+.footer-nav li{
+    padding: 0 .5em;
+}
+.footer-nav img{
+    width: 30px;
+    height: 30px;
 }
