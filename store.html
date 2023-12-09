@@ -3,108 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>The Generics | STORE</title>
 </head>
 <body>
-    <header>
-        <ul>
-            <li><a href="./index.html">HOME</a></li>
-            <li><a href="./store.html">STORE</a></li>
-            <li><a href="./about.html">ABOUT</a></li>
-        </ul>
-        <hr>
-        <h1>The Generics</h1>
+    <header class="main-header">
+        <nav class="main-nav nav">
+            <ul>
+                <li><a href="./index.html">HOME</a></li>
+                <li><a href="./store.html">STORE</a></li>
+                <li><a href="./about.html">ABOUT</a></li>
+            </ul>
+        </nav>
+        <h1 class="band-name band-name-large">The Generics</h1>
     </header>  
-    <section>
-        <h2>MUSIC</h2>
-        <div>
-            <div>
-                <strong>Album 1</strong>
+    <section class="container content-section">
+        <h2 class="section-header">MUSIC</h2>
+        <div class="shop-items">
+            <div class="shop-item">
+                <span class="shop-item-title">Album 1</span>
+                <img class="shop-item-image" src="/images/Album 1.png">
+                <div class="shop-item-details">
+                    <span class="shop-item-price">$18.99</span>
+                    <button class="btn btn-primary shop-item-btn" type="button">Add To Cart</button>
+                </div>
             </div>
-            <img src="/images/Album 1.png">
-            <div>
-                <span>$18.99</span>
-                <button>Add To Cart</button>
+            <div class="shop-item">
+                <span class="shop-item-title">Album 2</span>
+                <img class="shop-item-image" src="/images/Album 2.png">
+                <div class="shop-item-details">
+                    <span class="shop-item-price">$19.99</span>
+                    <button class="btn btn-primary shop-item-btn">Add To Cart</button>
+                </div>
             </div>
-        </div>
-        <div>
-            <div>
-                <strong>Album 2</strong>
+            <div class="shop-item">
+                <span class="shop-item-title">Album 3</span>
+                <img class="shop-item-image" src="/images/Album 3.png">
+                <div class="shop-item-details">
+                    <span class="shop-item-price">$9.99</span>
+                    <button class="btn btn-primary shop-item-btn">Add To Cart</button>
+                </div>
             </div>
-            <img src="/images/Album 2.png">
-            <div>
-                <span>$19.99</span>
-                <button>Add To Cart</button>
-            </div>
-        </div>
-        <div>
-            <div>
-                <strong>Album 3</strong>
-            </div>
-            <img src="/images/Album 3.png">
-            <div>
-                <span>$9.99</span>
-                <button>Add To Cart</button>
-            </div>
-        </div>
-        <div>
-            <div>
-                <strong>Album 4</strong>
-            </div>
-            <img src="/images/Album 4.png">
-            <div>
-                <span>$12.99</span>
-                <button>Add To Cart</button>
+            <div class="shop-item">
+                <span class="shop-item-title">Album 4</span>
+                <img class="shop-item-image" src="/images/Album 4.png">
+                <div class="shop-item-details">
+                    <span class="shop-item-price">$12.99</span>
+                    <button class="btn btn-primary shop-item-btn">Add To Cart</button>
+                </div>
             </div>
         </div>
     </section>
-    <section>
-        <h2>MERCH</h2>
-        <div>
-            <div>
-                <strong>T-Shirt</strong>
+    <section class="container content-section">
+        <h2 class="section-header">MERCH</h2>
+        <div class="shop-items">
+            <div class="shop-item">
+                <span class="shop-item-title">T-Shirt</span>
+                <img class="shop-item-image" src="/images/Shirt.png">
+                <div class="shop-item-details">
+                    <span class="shop-item-price">$19.99</span>
+                    <button class="btn btn-primary shop-item-btn">Add To Cart</button>
+                </div>
             </div>
-            <img src="/images/Shirt.png">
-            <div>
-                <span>$19.99</span>
-                <button>Add To Cart</button>
-            </div>
-        </div>
-        <div>
-            <div>
-                <strong>Cofee Cup</strong>
-            </div>
-            <img src="/images/Cofee.png">
-            <div>
-                <span>$6.99</span>
-                <button>Add To Cart</button>
+            <div class="shop-item">
+                <span class="shop-item-title">Cofee Cup</span>
+                <img class="shop-item-image" src="/images/Cofee.png">
+                <div class="shop-item-details">
+                    <span class="shop-item-price">$6.99</span>
+                    <button class="btn btn-primary shop-item-btn">Add To Cart</button>
+                </div>
             </div>
         </div>
     </section>
-    <section>
-        <h2>CART</h2>
+    <section class="container content-section">
+        <h2 class="section-header">CART</h2>
         <div>
-            <strong>ITEM</strong>
-            &lt;&gt;
-            <strong>PRICE</strong>
-            &lt;&gt;
-            <strong>QUANTITY</strong>
+            <span class="cart-item cart-header cart-column">ITEM</span>
+            <span class="cart-price cart-header cart-column">PRICE</span>
+            <span class="cart-quantity cart-header cart-column">QUANTITY</span>
         </div>
         <div>
             <img src="./images/Shirt.png" width="100">
             <span>T-Shirt</span>
-            &lt;&gt;
             <span>$19.99</span>
-            &lt;&gt;
             <input type="number" value="1">
             <button type="button">REMOVE</button>
         </div>
         <div>
             <img src="./images/Album 3.png" width="100">
             <span>Album 3</span>
-            &lt;&gt;
             <span>$9.99</span>
-            &lt;&gt;
             <input type="number" value="3">
             <button type="button">REMOVE</button>
         </div>
