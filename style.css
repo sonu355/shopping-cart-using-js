@@ -16,7 +16,7 @@ html, body{
     background-image: url("./images/Header\ Background.jpeg");
     background-blend-mode: multiply;
     background-size: cover;
-    padding: 30px;
+    padding-bottom: 30px;
 }
 
 .nav ul{
@@ -40,5 +40,17 @@ html, body{
 
 .main-nav{
     text-align: center;
-    
+    font-size: 1.1rem;
+    font-weight: lighter;
+    border-bottom: 1px solid rgba(255, 255, 255, .3);
+}
+
+.main-nav li{
+    padding: 0 5%;
+}
+
+.band-name{
+    text-align: center;
+    margin: 0;
+    font-size: 4em;
 }
