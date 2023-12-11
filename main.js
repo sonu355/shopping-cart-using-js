@@ -9,12 +9,14 @@ function ready() {
     // console.log(removeCartButtons)
     for(var i = 0; i < removeCartButtons.length; i++){
         var button = removeCartButtons[i];
-        button.addEventListener('click', function(e){
-            var targetButton = e.target
-            targetButton.parentElement.parentElement.remove()
-            updateCartTotal()
-        })
+        button.addEventListener('click', removeCartItem)
     }
+}
+
+function removeCartItem(e){
+    var targetButton = e.target
+    targetButton.parentElement.parentElement.remove()
+    updateCartTotal()
 }
 
 function updateCartTotal(){
