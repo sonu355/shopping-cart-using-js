@@ -52,6 +52,13 @@ function addItemToCart(titleName, itemPrice, imageSrc) {
     cartRow.classList.add('cart-row')
     // cartRow.innerHTML = imageSrc
     let cartItems = document.getElementsByClassName('cart-items')[0]
+    let cartItemNames = document.getElementsByClassName('cart-item-title')
+    for(let i = 0; i < cartItemNames.length; i++){
+        if(cartItemNames[i].innerText == titleName){
+            alert('this item is already in the cart')
+            return
+        }
+    }
     let cartItemContents = `
         <div class="cart-item cart-column">
             <img class="cart-item-image" src="${imageSrc}" width="100">
