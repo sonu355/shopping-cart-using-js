@@ -34,7 +34,7 @@ function quantityChange(e){
     if(isNaN(input.value) || input.value <= 0){
         input.value = 1
     } 
-    updateCartTotal;
+    updateCartTotal();
 }
 
 function addToCart(e){
@@ -45,6 +45,7 @@ function addToCart(e){
     let imageSrc = shopItem.getElementsByClassName('shop-item-image')[0].src
     console.log(titleName, itemPrice, imageSrc)
     addItemToCart(titleName, itemPrice, imageSrc)
+    updateCartTotal()
 }
 
 function addItemToCart(titleName, itemPrice, imageSrc) {
@@ -72,6 +73,8 @@ function addItemToCart(titleName, itemPrice, imageSrc) {
     `
     cartRow.innerHTML = cartItemContents
     cartItems.append(cartRow)
+    cartRow.getElementsByClassName('btn-danger')[0].addEventListener('click', removeItemFromCart)
+    cartRow.getElementsByClassName('cart-quantity-input')[0].addEventListener('change', quantityChange)
 }
 
 function updateCartTotal(){
