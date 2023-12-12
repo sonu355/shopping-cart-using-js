@@ -5,21 +5,35 @@ if(document.readyState == 'loading'){
 }
 
 function ready(){
+
     let removeCartItemButtons = document.getElementsByClassName('btn-danger')
     for(let i = 0; i < removeCartItemButtons.length; i++) {
     let button = removeCartItemButtons[i]
         button.addEventListener('click', removeItemFromCart)
     }
+
     let quantityInputs = document.getElementsByClassName('cart-quantity-input')
     for(let i = 0; i < quantityInputs.length; i++) {
         let input = quantityInputs[i];
         input.addEventListener('change', quantityChange)
     }
+
     let addToCartButtons = document.getElementsByClassName('shop-item-btn')
     for(let i = 0; i < addToCartButtons.length; i++){
             let button = addToCartButtons[i]
             button.addEventListener('click', addToCart)
     }
+
+    let purchaseButton = document.getElementsByClassName('btn-purchase')[0].addEventListener('click', purchaseClicked)
+}
+
+function purchaseClicked(){
+    alert('Thanks for purchasing')
+    let cartItems = document.getElementsByClassName('cart-items')[0]
+    while(cartItems.hasChildNodes()){
+        cartItems.removeChild(cartItems.firstChild)
+    }
+    updateCartTotal()
 }
 
 function removeItemFromCart(e){
