@@ -15,6 +15,11 @@ function ready(){
         let input = quantityInputs[i];
         input.addEventListener('change', quantityChange)
     }
+    let addToCartButtons = document.getElementsByClassName('shop-item-btn')
+    for(let i = 0; i < addToCartButtons.length; i++){
+            let button = addToCartButtons[i]
+            button.addEventListener('click', addToCart)
+    }
 }
 
 function removeItemFromCart(e){
@@ -24,12 +29,21 @@ function removeItemFromCart(e){
 }
 
 function quantityChange(e){
-    var input = e.target
-    console.log(e.target.value)
+    let input = e.target
+    // console.log(e.target.value)
     if(isNaN(input.value) || input.value <= 0){
         input.value = 1
     } 
     updateCartTotal;
+}
+
+function addToCart(e){
+    let button = e.target
+    let shopItem = button.parentElement.parentElement
+    let titleName = shopItem.getElementsByClassName('shop-item-title')[0].innerText
+    let itemPrice = shopItem.getElementsByClassName('shop-item-price')[0].innerText
+    let imageSrc = shopItem.getElementsByClassName('shop-item-image')[0].src
+    console.log(titleName, itemPrice, imageSrc)
 }
 
 function updateCartTotal(){
@@ -46,6 +60,8 @@ function updateCartTotal(){
         let quantity = cartItemQuantity.value
         // console.log(price, quantity)
         total = total + (price * quantity)
+        console.log(total)
     }
+    total = Math.round(total * 100) / 100;
     document.getElementsByClassName('cart-total-price')[0].innerText = '$' + total
 }
