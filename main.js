@@ -24,6 +24,13 @@ function ready(){
             button.addEventListener('click', addToCart)
     }
 
+    document.querySelector('.products').addEventListener('click', function (e) {
+        if (e.target && e.target.classList.contains('shop-item-btn')) {
+            addToCart(e);
+            updateCartTotal();
+        }
+    });
+
     let purchaseButton = document.getElementsByClassName('btn-purchase')[0].addEventListener('click', purchaseClicked)
 }
 
@@ -107,9 +114,9 @@ document.addEventListener('DOMContentLoaded', function(){
                     <h2 class="shop-item-title">${title.length > 15 ? title.substring(0, 15).concat('...') : title}</h2>
                     <h4 class="product-category">${response[i].category}</h4>
                     <p class="product-description">${description.length > 80 ? description.substring(0, 80).concat('...more') : description}</p>
-                    <div class="product-price-container">
-                        <h4 class="product-price">$${response[i].price}</h4>
-                        <a href="#!" data-productId="${response[i].id}" class="add-to-cart">Add To Cart</a>
+                    <div class="shop-item-details">
+                        <h4 class="shop-item-price">$${response[i].price}</h4>
+                        <button class="btn btn-primary shop-item-btn">Add To Cart</button>
                     </div>
             </div>
         `
