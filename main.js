@@ -91,6 +91,34 @@ function addItemToCart(titleName, itemPrice, imageSrc) {
     cartRow.getElementsByClassName('cart-quantity-input')[0].addEventListener('change', quantityChange)
 }
 
+document.addEventListener('DOMContentLoaded', function(){
+    let products = document.querySelector('.products')
+    async function fetchProducts(url){
+        let data = await fetch(url)
+        let response = await data.json()
+        console.log(response)
+
+        for(let i = 0; i < response.length; i++){
+            let description = response[i].description
+            let title = response[i].title
+            products.innerHTML += `
+            <div class="shop-item">
+                    <img src="${response[i].image}" alt="" class="shop-item-image">
+                    <h2 class="shop-item-title">${title.length > 15 ? title.substring(0, 15).concat('...') : title}</h2>
+                    <h4 class="product-category">${response[i].category}</h4>
+                    <p class="product-description">${description.length > 80 ? description.substring(0, 80).concat('...more') : description}</p>
+                    <div class="product-price-container">
+                        <h4 class="product-price">$${response[i].price}</h4>
+                        <a href="#!" data-productId="${response[i].id}" class="add-to-cart">Add To Cart</a>
+                    </div>
+            </div>
+        `
+        }
+        
+    }
+    fetchProducts('https://fakestoreapi.com/products')
+})
+
 function updateCartTotal(){
     let cartItemContainer = document.getElementsByClassName('cart-items')[0]
     let cartRows = cartItemContainer.getElementsByClassName('cart-row')
