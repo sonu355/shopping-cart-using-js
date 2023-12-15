@@ -121,7 +121,6 @@ document.addEventListener('DOMContentLoaded', function(){
             </div>
         `
         }
-        
     }
     fetchProducts('https://fakestoreapi.com/products')
 })

@@ -290,50 +290,6 @@ html, body{
     margin: 40px auto 80px auto;
     font-size: 1.75em;
 }
-/* .products{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-    gap: 5rem;
-}
-.product{
-    background: #f9f8fc;
-    padding: 0 0 2rem 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-.product img{
-    width: 100%;
-    height: 250px;
-}
-.product .product-title{
-    font-size: 2rem;
-}
-.product-content{
-   padding: 1rem 2rem; 
-}
-.product-description{
-    text-align: justify;
-}
-.product-title,
-.product-price-container,
-.product-description,
-.product-category{
-    padding: 0.5rem 0;
-}
-.product-price-container{
-    padding-top: 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.add-to-cart{
-    background: rgb(118, 97, 255);
-    color: white;
-    font-weight: 500;
-    padding: 0.6rem 1.5rem;
-    border-radius: 1rem;
-} */
 .products{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
