@@ -98,31 +98,41 @@ function addItemToCart(titleName, itemPrice, imageSrc) {
     cartRow.getElementsByClassName('cart-quantity-input')[0].addEventListener('change', quantityChange)
 }
 
+async function fetchProducts(url){
+    try {
+        let response = await fetch(url);
+        let data = await response.json();
+        return data;
+    } catch (error) {
+        console.log(error);
+        return[];
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function(){
     let products = document.querySelector('.products')
-    async function fetchProducts(url){
-        let data = await fetch(url)
-        let response = await data.json()
-        console.log(response)
 
-        for(let i = 0; i < response.length; i++){
-            let description = response[i].description
-            let title = response[i].title
+    async function displayProducts(){
+        let productsData = await fetchProducts('https://fakestoreapi.com/products') 
+    
+        for(let i = 0; i < productsData.length; i++){
+            let description = productsData[i].description
+            let title = productsData[i].title
             products.innerHTML += `
             <div class="shop-item">
-                    <img src="${response[i].image}" alt="" class="shop-item-image">
+                    <img src="${productsData[i].image}" alt="" class="shop-item-image">
                     <h2 class="shop-item-title">${title.length > 15 ? title.substring(0, 15).concat('...') : title}</h2>
-                    <h4 class="product-category">${response[i].category}</h4>
+                    <h4 class="product-category">${productsData[i].category}</h4>
                     <p class="product-description">${description.length > 80 ? description.substring(0, 80).concat('...more') : description}</p>
                     <div class="shop-item-details">
-                        <h4 class="shop-item-price">$${response[i].price}</h4>
+                        <h4 class="shop-item-price">$${productsData[i].price}</h4>
                         <button class="btn btn-primary shop-item-btn">Add To Cart</button>
                     </div>
             </div>
         `
         }
     }
-    fetchProducts('https://fakestoreapi.com/products')
+    displayProducts()
 })
 
 function updateCartTotal(){
