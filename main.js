@@ -3,7 +3,7 @@ if(document.readyState == 'loading'){
 }else{
     ready()
 }
-
+const API_URL = 'https://fakestoreapi.com/products'
 function ready(){
 
     let removeCartItemButtons = document.getElementsByClassName('btn-danger')
@@ -98,9 +98,17 @@ function addItemToCart(titleName, itemPrice, imageSrc) {
     cartRow.getElementsByClassName('cart-quantity-input')[0].addEventListener('change', quantityChange)
 }
 
+let spinner  = document.getElementById('loadingSpinner')
+function showSpinner() {
+    spinner.style.display = 'block';
+}
+function hideSpinner() {
+    spinner.style.display = 'none';
+}
 async function fetchProducts(url){
     try {
         let response = await fetch(url);
+        console.log(response)
         let data = await response.json();
         return data;
     } catch (error) {
@@ -109,30 +117,36 @@ async function fetchProducts(url){
     }
 }
 
-document.addEventListener('DOMContentLoaded', function(){
-    let products = document.querySelector('.products')
-
-    async function displayProducts(){
-        let productsData = await fetchProducts('https://fakestoreapi.com/products') 
-    
-        for(let i = 0; i < productsData.length; i++){
-            let description = productsData[i].description
-            let title = productsData[i].title
-            products.innerHTML += `
-            <div class="shop-item">
-                    <img src="${productsData[i].image}" alt="" class="shop-item-image">
-                    <h2 class="shop-item-title">${title.length > 15 ? title.substring(0, 15).concat('...') : title}</h2>
-                    <h4 class="product-category">${productsData[i].category}</h4>
-                    <p class="product-description">${description.length > 80 ? description.substring(0, 80).concat('...more') : description}</p>
-                    <div class="shop-item-details">
-                        <h4 class="shop-item-price">$${productsData[i].price}</h4>
-                        <button class="btn btn-primary shop-item-btn">Add To Cart</button>
-                    </div>
-            </div>
-        `
-        }
-    }
-    displayProducts()
+document.addEventListener('DOMContentLoaded',async function(){
+        let products = document.querySelector('.products')
+   
+        async function displayProducts(){
+            try{
+                showSpinner()
+                let productsData = await fetchProducts() 
+                for(let i = 0; i < productsData.length; i++){
+                    let description = productsData[i].description
+                    let title = productsData[i].title
+                    products.innerHTML += `
+                    <div class="shop-item">
+                            <img src="${productsData[i].image}" alt="" class="shop-item-image">
+                            <h2 class="shop-item-title">${title.length > 15 ? title.substring(0, 15).concat('...') : title}</h2>
+                            <h4 class="product-category">${productsData[i].category}</h4>
+                            <p class="product-description">${description.length > 80 ? description.substring(0, 80).concat('...more') : description}</p>
+                            <div class="shop-item-details">
+                                <h4 class="shop-item-price">$${productsData[i].price}</h4>
+                                <button class="btn btn-primary shop-item-btn">Add To Cart</button>
+                            </div>
+                    </div>`
+                }
+                hideSpinner()
+            }
+            catch(error){
+                console.log(error)
+                hideSpinner()
+            }
+        } 
+        await displayProducts()
 })
 
 function updateCartTotal(){
