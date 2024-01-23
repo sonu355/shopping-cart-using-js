@@ -4,6 +4,7 @@ if(document.readyState == 'loading'){
     ready()
 }
 const API_URL = 'https://fakestoreapi.com/products'
+
 function ready(){
 
     let removeCartItemButtons = document.getElementsByClassName('btn-danger')
@@ -55,6 +56,7 @@ function quantityChange(e){
     if(isNaN(input.value) || input.value <= 0){
         input.value = 1
     } 
+    
     updateCartTotal();
 }
 
@@ -123,7 +125,7 @@ document.addEventListener('DOMContentLoaded',async function(){
         async function displayProducts(){
             try{
                 showSpinner()
-                let productsData = await fetchProducts() 
+                let productsData = await fetchProducts(API_URL) 
                 for(let i = 0; i < productsData.length; i++){
                     let description = productsData[i].description
                     let title = productsData[i].title
