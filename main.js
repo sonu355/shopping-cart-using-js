@@ -126,21 +126,33 @@ document.addEventListener('DOMContentLoaded',async function(){
             try{
                 showSpinner()
                 let productsData = await fetchProducts(API_URL) 
-                for(let i = 0; i < productsData.length; i++){
-                    let description = productsData[i].description
-                    let title = productsData[i].title
-                    products.innerHTML += `
-                    <div class="shop-item">
-                            <img src="${productsData[i].image}" alt="" class="shop-item-image">
-                            <h2 class="shop-item-title">${title.length > 15 ? title.substring(0, 15).concat('...') : title}</h2>
-                            <h4 class="product-category">${productsData[i].category}</h4>
-                            <p class="product-description">${description.length > 80 ? description.substring(0, 80).concat('...more') : description}</p>
-                            <div class="shop-item-details">
-                                <h4 class="shop-item-price">$${productsData[i].price}</h4>
-                                <button class="btn btn-primary shop-item-btn">Add To Cart</button>
-                            </div>
-                    </div>`
+
+                const itemsPerPage = 6;
+                const totalPages = Math.ceil(productsData.length / itemsPerPage);
+        
+                const paginationContainer = document.getElementById('paginationContainer');
+                const paginationList = document.getElementById('paginationList');
+        
+                paginationList.innerHTML = '';
+
+                for (let page = 1; page <= totalPages; page++) {
+                    const li = document.createElement('li');
+                    li.classList.add('page-item');
+        
+                    const a = document.createElement('a');
+                    a.classList.add('page-link');
+                    a.href = '#';
+                    a.innerText = page;
+        
+                    a.addEventListener('click', () => {
+                        displayPage(page, itemsPerPage, productsData);
+                    });
+        
+                    li.appendChild(a);
+                    paginationList.appendChild(li);
                 }
+        
+                displayPage(1, itemsPerPage, productsData);
                 hideSpinner()
             }
             catch(error){
@@ -148,6 +160,31 @@ document.addEventListener('DOMContentLoaded',async function(){
                 hideSpinner()
             }
         } 
+        
+
+function displayPage(page, itemsPerPage, productsData) {
+    const startIndex = (page - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const currentProducts = productsData.slice(startIndex, endIndex);
+
+    products.innerHTML = '';
+
+    for (let i = 0; i < currentProducts.length; i++) {
+        let description = currentProducts[i].description;
+        let title = currentProducts[i].title;
+        products.innerHTML += `
+            <div class="shop-item">
+                <img src="${currentProducts[i].image}" alt="" class="shop-item-image">
+                <h2 class="shop-item-title">${title.length > 15 ? title.substring(0, 15).concat('...') : title}</h2>
+                <h4 class="product-category">${currentProducts[i].category}</h4>
+                <p class="product-description">${description.length > 80 ? description.substring(0, 80).concat('...more') : description}</p>
+                <div class="shop-item-details">
+                    <h4 class="shop-item-price">$${currentProducts[i].price}</h4>
+                    <button class="btn btn-primary shop-item-btn">Add To Cart</button>
+                </div>
+            </div>`;
+    }
+}
         await displayProducts()
 })
 
